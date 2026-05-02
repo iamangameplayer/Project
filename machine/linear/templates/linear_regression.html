@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Linear Regression</title>
+</head>
+<body>
+<div class = 'container'>
+    <h2>Linear Regression Model</h2>
+    <form id ="form" method = "post">
+        {% csrf_token %}
+        <input id="MedInc" name="MedInc" placeholder="Enter Median Income in Block Group">
+        <input id="HouseAge" name="HouseAge" placeholder="Enter House Age in Block Group">
+        <input id="AveRooms" name="AveRooms" placeholder="Enter average number of rooms in a  household">
+        <input id="AveBedrms" name="AveBedrms" placeholder="Enter average number of bedrooms in a  household">
+        <input id="Population" name="Population" placeholder="Enter block group population">
+        <input id="AveOccup" name="AveOccup" placeholder="Enter average number of household members">
+        <input id="Latitude" name="Latitude" placeholder="Enter block group latitude">
+        <input id="Longitude" name="Longitude" placeholder="Enter block group longitude">
+    </form>
+    <button type="button" onclick="sendData()">Predict</button>
+    <h3 id = "result"></h3>
+</div>
+</body>
+<script>
+function sendData() {
+    fetch('/predict_linear/', {
+        method: 'POST',
+        body: new FormData(document.getElementById('form')),
+        credentials: 'same-origin'
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log("RESPONSE:", data);
+        document.getElementById("result").innerText =
+            JSON.stringify(data);
+    })
+    .catch(err => console.error("ERROR:", err));
+}
+</script>
+</html>
