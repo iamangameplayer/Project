@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>House Price Prediction</title>
+</head>
+
+<h2>Enter Values</h2>
+<form id="form">
+    {% csrf_token %}
+<input id="MedInc" placeholder="Enter Median Income in Block Group">
+<input id="HouseAge" placeholder="Enter House Agge in Block Group">
+<input id="AveRooms" placeholder="Enter average number of rooms per household">
+<input id="AveBedrms" placeholder="Enter average number of bedrooms per household">
+<input id="Population" placeholder="Enter block group populaton">
+<input id="AveOccup" placeholder="Enter average number of household member">
+<input id="Latitude" placeholder="Enter block group latitude">
+<input id='Longitude' placeholder="Enter block group longitude">
+</form>
+<button onclick="sendData()">Predict</button>
+
+<h3 id="result"></h3>
+
+<script>
+function sendData() {
+    const fields =[
+                   "MedInc", "HouseAge", "AveRooms", "AveBedrms",
+                   "Population", "AveOccup", "Latitude", "Longitude"
+                  ];
+    const formData = new FormData();
+
+    fields.forEach((field) => {
+        formData.append(field, document.getElementById(field).value);
+    });
+
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+    fetch('/predict/', {
+        method: 'POST',
+        headers: {
+                'X-CSRFToken': csrfToken
+        },
+        body: formData,
+        credentials: 'same-origin'
+    })
+    .then(res => res.json())
+    .then(data => {
+            const price = (data.result * 100000).toFixed(2);
+            document.getElementById("result").innerText = "Estimated Price : $"+price;
+    })
+    .catch(err => console.error("Error", err));
+   }
+</script>
+
+
+</html>
