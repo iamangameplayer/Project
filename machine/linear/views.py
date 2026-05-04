@@ -11,19 +11,33 @@ def home(request):
 
 @csrf_exempt
 def predict_linear(request):
-        if request.method == 'POST':
+    if request.method == 'POST':
+        try:
+            MedInc = float(request.POST.get('MedInc') or 0)
+            HouseAge = float(request.POST.get('HouseAge') or 0)
+            AveRooms = float(request.POST.get('AveRooms') or 0)
+            AveBedrms = float(request.POST.get('AveBedrms') or 0)
+            Population = float(request.POST.get('Population') or 0)
+            AveOccup = float(request.POST.get('AveOccup') or 0)
+            Latitude = float(request.POST.get('Latitude') or 0)
+            Longitude = float(request.POST.get('Longitude') or 0)
+
+            rooms_per_person = AveRooms/AveOccup if AveOccup!=0 else 0
+            bedrooms_per_person = AveBedrms/AveOccup if AveOccup!=0 else 0
+            average_income_per_block = MedInc/Population if Population!=0 else 0
+
+
+
             features = [
-            float(request.POST.get('MedInc')),
-            float(request.POST.get('HouseAge')),
-            float(request.POST.get('AveRooms')),
-            float(request.POST.get('AveBedrms')),
-            float(request.POST.get('Population')),
-            float(request.POST.get('AveOccup')),
-            float(request.POST.get('Latitude')),
-            float(request.POST.get('Longitude')),
-        ]
+            MedInc,HouseAge,AveRooms,AveBedrms,Population,
+                AveOccup,Latitude,Longitude,
+                rooms_per_person,bedrooms_per_person,
+            average_income_per_block,]
+        except Exception as e:
+            print("CRASH",e)
+            return JsonResponse({'error': str(e)})
 
         prediction = linear_model.predict([features])
         print("Features", features)
         print("Prediction", prediction)
-        return JsonResponse({'result': float(prediction[0])})
+        return JsonResponse({'result': float(prediction[0]*100000)})

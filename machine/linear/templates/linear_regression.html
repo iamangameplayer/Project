@@ -7,7 +7,7 @@
 <body>
 <div class = 'container'>
     <h2>Linear Regression Model</h2>
-    <form id ="form" method = "post">
+    <form id ="form" method = "POST" action="{% url 'predict_linear' %}">
         {% csrf_token %}
         <input id="MedInc" name="MedInc" placeholder="Enter Median Income in Block Group">
         <input id="HouseAge" name="HouseAge" placeholder="Enter House Age in Block Group">
@@ -24,7 +24,7 @@
 </body>
 <script>
 function sendData() {
-    fetch('/predict_linear/', {
+    fetch("/predict_linear/predict_linear/", {
         method: 'POST',
         body: new FormData(document.getElementById('form')),
         credentials: 'same-origin'
@@ -33,7 +33,7 @@ function sendData() {
     .then(data => {
         console.log("RESPONSE:", data);
         document.getElementById("result").innerText =
-            JSON.stringify(data);
+            "Prediction: "+data.result;
     })
     .catch(err => console.error("ERROR:", err));
 }
