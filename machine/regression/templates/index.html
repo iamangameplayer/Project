@@ -72,7 +72,7 @@ function sendData() {
 
     const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
-    fetch('/predict/', {
+    fetch("{% url 'predict' %}", {
         method: 'POST',
         headers: {
                 'X-CSRFToken': csrfToken

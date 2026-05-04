@@ -26,8 +26,6 @@ def predict_linear(request):
             bedrooms_per_person = AveBedrms/AveOccup if AveOccup!=0 else 0
             average_income_per_block = MedInc/Population if Population!=0 else 0
 
-
-
             features = [
             MedInc,HouseAge,AveRooms,AveBedrms,Population,
                 AveOccup,Latitude,Longitude,
@@ -38,6 +36,6 @@ def predict_linear(request):
             return JsonResponse({'error': str(e)})
 
         prediction = linear_model.predict([features])
-        print("Features", features)
-        print("Prediction", prediction)
+        #print("Features", features)
+        #print("Prediction", prediction)
         return JsonResponse({'result': float(prediction[0]*100000)})
