@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'ridge',
     'linear',
     'regression',
     'django.contrib.admin',

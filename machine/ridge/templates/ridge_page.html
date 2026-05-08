@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ridge Regression</title>
+</head>
+<body>
+
+<h1>Predicting California House Prices using Ridge Regression</h1>
+<form id="form">
+    {% csrf_token %}
+    <input type="number" name="MedInc" id="MedInc" placeholder="Enter Median income in block group">
+    <input type="number" name="HouseAge" id="HouseAge" placeholder="Enter House age in block group">
+    <input type="number" name="AveRooms" id="AveRooms" placeholder="Enter average rooms per household">
+    <input type="number" name="AveBedrms" id="AveBedrms" placeholder="Enter average bedrooms per household">
+    <input type="number" name="Population" id="Population" placeholder="Enter population of  block group">
+    <input type="number" name="AveOccup" id="AveOccup" placeholder="Enter average number of household members">
+    <input type="number" name="Latitude" id="Latitude" placeholder="Enter latitude of  block group">
+    <input type="number" name="Longitude" id="Longitude" placeholder="Enter longitude of  block group">
+</form>
+
+<button type="button" onclick="sendData_ridge()">Predict</button>
+<h3 id='result'></h3>
+
+<script>
+    function sendData_ridge()
+    {
+                    const fields = [
+                                        'MedInc',
+                                        'HouseAge',
+                                        'AveRooms',
+                                        'AveBedrms',
+                                        'Population',
+                                        'AveOccup',
+                                        'Latitude',
+                                         'Longitude'
+                    ];
+
+    const formData = new FormData();
+
+    fields.forEach(field => {
+    formData.append(field, document.getElementById(field).value);
+})
+    const csrfToken = document.querySelector('input[name=csrfmiddlewaretoken]').value;
+
+    fetch("{% url 'predict_ridge' %}" ,{
+                                        "method": "POST",
+                                        "headers": {
+                                        "X-CSRFToken": csrfToken
+                                        },
+    body: formData,
+    credentials: 'same-origin'
+    })
+    .then(response => response.json())
+    .then(data => {
+      const price_ridge = (data.result * 100000).toFixed(2);
+      document.getElementById('result').innerText = "Estimated Price : $" + price_ridge;
+      })
+    .catch(error => console.log("Error",error));
+}
+</script>
+
+</body>
+</html>
