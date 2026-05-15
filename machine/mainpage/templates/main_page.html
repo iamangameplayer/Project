@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regression Hub</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            margin-top: 40px;
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            width: 80%;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .card a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.2rem;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .subtitle {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Regression Model Hub</h1>
+    <div class="subtitle">Pick your poison. Statistically speaking.</div>
+
+    <div class="container">
+        {% for model in models %}
+            <div class="card" onclick="goToModel('{{ model.url }}')">
+                <div>{{ model.name }}</div>
+                <a href="{{ model.url }}">Open</a>
+            </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        function goToModel(url) {
+            window.location.href = url;
+        }
+    </script>
+
+</body>
+</html>
