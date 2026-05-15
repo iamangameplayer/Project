@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'ridge',
     'linear',
+    'gradient',
     'regression',
     'django.contrib.admin',
     'django.contrib.auth',

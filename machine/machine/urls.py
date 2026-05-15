@@ -23,4 +23,5 @@ urlpatterns = [
     path('predict/', include('regression.urls')),
     path('predict_linear/', include('linear.urls')),
     path('predict_ridge/', include('ridge.urls')),
+    path('predict_gradient/', include('gradient.urls')),
 ]
