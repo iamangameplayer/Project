@@ -1,93 +1,141 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 
-<style>
-    body {
-        font-family: sans-serif;
-        background-color: #f0f2f5;
-        display: flex;
-        align-items: left;
-        justify-content: center;
-        height: 100vh;
-    }
-
-    .container {
-        background-color: white;
-        padding: 25px;
-        border-radius: 10px;
-        width: 350px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-
-    input {
-        width: 100%;
-        margin: 5px 0;
-        padding: 10px;
-    }
-
-    button {
-        width:50%;
-        padding: 10px;
-        align-items: center;
-        background-color: lightskyblue;
-        color: white;
-        border: none;
-    }
-</style>
-
 <head>
-    <title>Random Forest Regressor</title>
-</head>
-<body>
-<div class = "container">
-<h2>House Price Predictor</h2>
-<form id="form">
-    {% csrf_token %}
-<input id="MedInc" placeholder="Enter Median Income in Block Group">
-<input id="HouseAge" placeholder="Enter House Age in Block Group">
-<input id="AveRooms" placeholder="Enter average number of rooms per household">
-<input id="AveBedrms" placeholder="Enter average number of bedrooms per household">
-<input id="Population" placeholder="Enter block group populaton">
-<input id="AveOccup" placeholder="Enter average number of household member">
-<input id="Latitude" placeholder="Enter block group latitude">
-<input id='Longitude' placeholder="Enter block group longitude">
-</form>
-<button onclick="sendData()">Predict</button>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<h3 id="result"></h3>
+    <title>Random Forest Regressor</title>
+
+    <link rel="stylesheet" href="{% static 'regression/css/random_forest.css' %}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="model-header">
+
+        <p class="tag">Ensemble Learning Model</p>
+
+        <h1>Random Forest Regressor</h1>
+
+        <p class="description">
+            Random Forest is an ensemble learning method that builds multiple decision trees
+            and combines their outputs to produce a more stable and accurate prediction.
+            It reduces overfitting by averaging many independent models trained on random subsets
+            of the data and features.
+        </p>
+
+    </div>
+
+
+    <div class="model-visual">
+
+    <img src="{% static 'regression/images/random_forest.jpg' %}"
+         alt="Random Forest Visualization">
+
+    <div class="visual-text">
+
+        <h3>How Random Forest Works</h3>
+
+        <p>
+            Random Forest is an ensemble learning technique where multiple decision trees
+            are trained on different random subsets of the dataset. Each tree independently
+            makes a prediction, and the final output is obtained by averaging all predictions
+            (for regression tasks).
+            <br><br>
+            The visualization shows how multiple trees work in parallel, each capturing
+            different patterns in the data such as income, location, and housing structure.
+            This reduces overfitting and improves prediction stability compared to a single tree.
+        </p>
+
+    </div>
 
 </div>
-</body>
+
+
+    <h2>House Price Prediction</h2>
+
+    <form id="form">
+
+        {% csrf_token %}
+
+        <input id="MedInc" placeholder="Median Income">
+        <input id="HouseAge" placeholder="House Age">
+        <input id="AveRooms" placeholder="Average Rooms">
+        <input id="AveBedrms" placeholder="Average Bedrooms">
+        <input id="Population" placeholder="Population">
+        <input id="AveOccup" placeholder="Average Occupancy">
+        <input id="Latitude" placeholder="Latitude">
+        <input id="Longitude" placeholder="Longitude">
+
+    </form>
+
+    <div class="button-wrapper">
+        <button onclick="sendData()">
+            Predict Price
+        </button>
+    </div>
+
+    <h3 id="result"></h3>
+
+</div>
+
 <script>
-function sendData() {
-    const fields =[
-                   "MedInc", "HouseAge", "AveRooms", "AveBedrms",
-                   "Population", "AveOccup", "Latitude", "Longitude"
-                  ];
+
+function sendData()
+{
+    const fields = [
+        "MedInc", "HouseAge", "AveRooms", "AveBedrms",
+        "Population", "AveOccup", "Latitude", "Longitude"
+    ];
+
     const formData = new FormData();
 
-    fields.forEach((field) => {
-        formData.append(field, document.getElementById(field).value);
+    fields.forEach(field => {
+        formData.append(
+            field,
+            document.getElementById(field).value
+        );
     });
 
-    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    const csrfToken =
+        document.querySelector('[name=csrfmiddlewaretoken]').value;
 
     fetch("{% url 'predict' %}", {
-        method: 'POST',
+
+        method: "POST",
+
         headers: {
-                'X-CSRFToken': csrfToken
+            "X-CSRFToken": csrfToken
         },
+
         body: formData,
-        credentials: 'same-origin'
+
+        credentials: "same-origin"
+
     })
+
     .then(res => res.json())
+
     .then(data => {
-            const price = (data.result * 100000).toFixed(2);
-            document.getElementById("result").innerText = "Estimated Price : $"+price;
+
+        const price =
+            (data.result * 100000).toFixed(2);
+
+        document.getElementById("result").innerText =
+            "Estimated Price: $" + price;
+
     })
+
     .catch(err => console.error("Error", err));
-   }
+}
+
 </script>
 
-
+</body>
 </html>

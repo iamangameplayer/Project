@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'ridge.apps.RidgeConfig',
     'linear',
     'gradient.apps.GradientConfig',
-    'regression',
+    'regression.apps.RegressionConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
