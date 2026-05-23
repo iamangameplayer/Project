@@ -1,41 +1,154 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Linear Regression</title>
+
+    <link rel="stylesheet" href="{% static 'css/linear_page.css' %}">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-<div class = 'container'>
-    <h2>Linear Regression Model</h2>
-    <form id ="form" method = "POST" action="{% url 'predict_linear' %}">
-        {% csrf_token %}
-        <input id="MedInc" name="MedInc" placeholder="Enter Median Income in Block Group">
-        <input id="HouseAge" name="HouseAge" placeholder="Enter House Age in Block Group">
-        <input id="AveRooms" name="AveRooms" placeholder="Enter average number of rooms in a  household">
-        <input id="AveBedrms" name="AveBedrms" placeholder="Enter average number of bedrooms in a  household">
-        <input id="Population" name="Population" placeholder="Enter block group population">
-        <input id="AveOccup" name="AveOccup" placeholder="Enter average number of household members">
-        <input id="Latitude" name="Latitude" placeholder="Enter block group latitude">
-        <input id="Longitude" name="Longitude" placeholder="Enter block group longitude">
-    </form>
-    <button type="button" onclick="sendData()">Predict</button>
-    <h3 id = "result"></h3>
+
+
+    <div class='container'>
+
+        <h2>Linear Regression Model</h2>
+
+
+        <div class="model-info">
+
+    <div class="model-header">
+        <p class="tag">Machine Learning Model</p>
+        <h1>California Housing Price Predictor</h1>
+
+        <p class="description">
+            This model uses Linear Regression to estimate California housing prices
+            based on demographic and geographic features. Linear Regression models
+            relationships using a linear function and provides fast, interpretable predictions.
+        </p>
+    </div>
+    <div class="regression-visual">
+
+    <img
+        src="{% static 'images/linear_regression.png'  %}"
+        alt="Linear Regression Visualization"
+    >
+
+    <div class="visual-text">
+        <h3>How Linear Regression Works</h3>
+
+        <p>
+            The visualization illustrates how Linear Regression fits an optimal straight line
+    through scattered data points to model the relationship between variables.
+    Each blue point represents an observed data sample, while the red line represents
+    the model’s predicted trend across the dataset.
+
+    The objective of Linear Regression is to minimize the overall prediction error
+    between actual observations and predicted values using least squares optimization.
+    This allows the model to identify linear patterns efficiently while remaining
+    fast, interpretable, and computationally lightweight
+        </p>
+    </div>
+
 </div>
+    <div class="metrics-grid">
+
+        <div class="metric-card">
+            <p class="metric-label">RMSE</p>
+            <h3>0.72</h3>
+            <span>Root Mean Squared Error</span>
+        </div>
+
+        <div class="metric-card">
+            <p class="metric-label">MSE</p>
+            <h3>0.51</h3>
+            <span>Mean Squared Error</span>
+        </div>
+
+        <div class="metric-card">
+            <p class="metric-label">MAE</p>
+            <h3>0.50</h3>
+            <span>Mean Absolute Error</span>
+        </div>
+
+        <div class="metric-card">
+            <p class="metric-label">R² Score</p>
+            <h3>0.62</h3>
+            <span>Model Accuracy Indicator</span>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <form id="form" method="POST" action="{% url 'predict_linear' %}">
+            {% csrf_token %}
+
+            <input id="MedInc" name="MedInc" placeholder="Enter Median Income in Block Group">
+
+            <input id="HouseAge" name="HouseAge" placeholder="Enter House Age in Block Group">
+
+            <input id="AveRooms" name="AveRooms" placeholder="Enter average number of rooms in a household">
+
+            <input id="AveBedrms" name="AveBedrms" placeholder="Enter average number of bedrooms in a household">
+
+            <input id="Population" name="Population" placeholder="Enter block group population">
+
+            <input id="AveOccup" name="AveOccup" placeholder="Enter average number of household members">
+
+            <input id="Latitude" name="Latitude" placeholder="Enter block group latitude">
+
+            <input id="Longitude" name="Longitude" placeholder="Enter block group longitude">
+        </form>
+
+        <div class="button-wrapper">
+            <button type="button" onclick="sendData()">
+                Predict
+            </button>
+        </div>
+
+        <h3 id="result"></h3>
+
+    </div>
+
+    <script>
+        function sendData() {
+            fetch("/predict_linear/predict_linear/", {
+                method: 'POST',
+                body: new FormData(document.getElementById('form')),
+                credentials: 'same-origin'
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log("RESPONSE:", data);
+
+                document.getElementById("result").innerText =
+                    "Prediction: " + data.result;
+            })
+            .catch(err => console.error("ERROR:", err));
+        }
+    </script>
+
 </body>
-<script>
-function sendData() {
-    fetch("/predict_linear/predict_linear/", {
-        method: 'POST',
-        body: new FormData(document.getElementById('form')),
-        credentials: 'same-origin'
-    })
-    .then(res => res.json())
-    .then(data => {
-        console.log("RESPONSE:", data);
-        document.getElementById("result").innerText =
-            "Prediction: "+data.result;
-    })
-    .catch(err => console.error("ERROR:", err));
-}
-</script>
 </html>

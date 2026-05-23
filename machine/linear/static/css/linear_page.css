@@ -1,0 +1,348 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:40px;
+
+    font-family:'Inter',sans-serif;
+
+    background:#0f1117;
+
+    color:#e6edf3;
+}
+
+/* Main Container */
+
+.container{
+    width:100%;
+    max-width:1100px;
+
+    background:#161b22;
+
+    border:1px solid #30363d;
+
+    border-radius:20px;
+
+    padding:48px;
+
+    box-shadow:
+        0 10px 40px rgba(0,0,0,0.35);
+}
+
+/* Heading */
+
+h2{
+    font-size:2.2rem;
+
+    font-weight:700;
+
+    margin-bottom:40px;
+
+    color:#f0f6fc;
+
+    letter-spacing:-1px;
+}
+
+/* Form Layout */
+
+form{
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(300px,1fr));
+
+    gap:22px;
+}
+
+/* Inputs */
+
+input{
+    width:100%;
+
+    padding:16px 18px;
+
+    background:#0d1117;
+
+    border:1px solid #30363d;
+
+    border-radius:12px;
+
+    color:#f0f6fc;
+
+    font-size:0.96rem;
+
+    transition:all 0.2s ease;
+
+    outline:none;
+}
+
+input::placeholder{
+    color:#8b949e;
+}
+
+input:focus{
+    border-color:#2f81f7;
+
+    box-shadow:
+        0 0 0 3px rgba(47,129,247,0.18);
+}
+
+/* Button Wrapper */
+
+.button-wrapper{
+    margin-top:34px;
+
+    display:flex;
+    justify-content:flex-start;
+}
+
+/* Button */
+
+button{
+    border:none;
+
+    background:#238636;
+
+    color:white;
+
+    padding:14px 30px;
+
+    border-radius:10px;
+
+    font-size:0.95rem;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:all 0.2s ease;
+}
+
+button:hover{
+    background:#2ea043;
+
+    transform:translateY(-1px);
+}
+
+button:active{
+    transform:translateY(1px);
+}
+
+/* Result */
+
+#result{
+    margin-top:32px;
+
+    font-size:1.15rem;
+
+    color:#58a6ff;
+
+    font-weight:500;
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+    body{
+        padding:20px;
+    }
+
+    .container{
+        padding:28px;
+    }
+
+    h2{
+        font-size:1.7rem;
+    }
+
+    form{
+        grid-template-columns:1fr;
+    }
+
+    button{
+        width:100%;
+    }
+}
+
+
+/* =========================
+   MODEL INFO SECTION
+========================= */
+
+.model-info{
+    margin-bottom:50px;
+}
+
+.model-header{
+    margin-bottom:35px;
+}
+
+.tag{
+    display:inline-block;
+
+    background:#21262d;
+
+    color:#58a6ff;
+
+    border:1px solid #30363d;
+
+    padding:6px 12px;
+
+    border-radius:999px;
+
+    font-size:0.82rem;
+    font-weight:600;
+
+    margin-bottom:18px;
+}
+
+.model-header h1{
+    font-size:2.7rem;
+
+    color:#f0f6fc;
+
+    margin-bottom:18px;
+
+    line-height:1.1;
+
+    letter-spacing:-1.5px;
+}
+
+.description{
+    max-width:850px;
+
+    color:#8b949e;
+
+    font-size:1rem;
+
+    line-height:1.7;
+}
+
+/* =========================
+   METRICS GRID
+========================= */
+
+.metrics-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(220px,1fr));
+
+    gap:20px;
+}
+
+.metric-card{
+    background:#0d1117;
+
+    border:1px solid #30363d;
+
+    border-radius:18px;
+
+    padding:24px;
+
+    transition:all 0.2s ease;
+}
+
+.metric-card:hover{
+    transform:translateY(-3px);
+
+    border-color:#58a6ff;
+}
+
+.metric-label{
+    color:#8b949e;
+
+    font-size:0.9rem;
+
+    margin-bottom:10px;
+}
+
+.metric-card h3{
+    font-size:2rem;
+
+    color:#f0f6fc;
+
+    margin-bottom:8px;
+}
+
+.metric-card span{
+    color:#6e7681;
+
+    font-size:0.9rem;
+}
+
+
+/* =========================
+   REGRESSION VISUAL
+========================= */
+
+.regression-visual{
+    margin:40px 0;
+
+    background:#0d1117;
+
+    border:1px solid #30363d;
+
+    border-radius:18px;
+
+    padding:24px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:28px;
+}
+
+.regression-visual img{
+    width:260px;
+
+    background:white;
+
+    border-radius:12px;
+
+    padding:12px;
+}
+
+.visual-text{
+    flex:1;
+}
+
+.visual-text h3{
+    font-size:1.4rem;
+
+    margin-bottom:14px;
+
+    color:#f0f6fc;
+}
+
+.visual-text p{
+    color:#8b949e;
+
+    line-height:1.7;
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+    .regression-visual{
+        flex-direction:column;
+
+        text-align:center;
+    }
+
+    .regression-visual img{
+        width:100%;
+        max-width:300px;
+    }
+}
