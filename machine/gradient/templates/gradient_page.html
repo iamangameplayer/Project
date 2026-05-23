@@ -1,63 +1,143 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Gradient Boosting Regressor </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gradient Boosting Regressor</title>
+
+    <link rel="stylesheet" href="{% static 'gradient/css/gradient_page.css' %}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-<h1>Predicting using Gradient boosting regressor algorithm</h1>
+<div class="container">
 
-<form id = 'form' >
-    {% csrf_token %}
-    <input type = 'number' name = 'MedInc' id = 'MedInc' placeholder="Enter Medium income of block group" >
-    <input type = 'number' name = 'HouseAge' id = 'HouseAge' placeholder="Enter house age of block group" >
-    <input type = 'number' name = 'AveRooms' id = 'AveRooms' placeholder="Enter average number of rooms per household" >
-    <input type = 'number' name = 'AveBedrms' id = 'AveBedrms' placeholder="Enter average number of bedrooms per household" >
-    <input type = 'number' name = 'Population' id = 'Population' placeholder="Enter population of block group" >
-    <input type = 'number' name = 'AveOccup' id = 'AveOccup' placeholder="Enter average occupation per household" >
-    <input type="number" name="Latitude" id = 'Latitude' placeholder="Enter Longitude of block group" >
-    <input type="number" name="Longitude" id = 'Longitude' placeholder="Enter Latitude of block group" >
-</form>
+    <div class="model-header">
+        <p class="tag">Ensemble Learning Model</p>
 
-<button type = 'button' onclick="sendDatagrad()">Predict</button>
-<h2 id="result"></h2>
+        <h1>Gradient Boosting Regressor</h1>
+
+        <p class="description">
+            Gradient Boosting builds predictions sequentially by combining multiple weak learners,
+            typically decision trees. Each new model corrects the errors of the previous ones,
+            resulting in a highly accurate but computationally heavier predictive system.
+        </p>
+    </div>
+
+    <div class="model-visual">
+
+    <img src="{% static 'gradient/images/gradient_regressor.jpg' %}"
+         alt="Gradient Boosting Visualization">
+
+    <div class="visual-text">
+
+        <h3>How Gradient Boosting Works</h3>
+
+        <p>
+            Gradient Boosting is an ensemble learning technique where models are built sequentially.
+            Each new decision tree focuses on correcting the errors made by the previous ones.
+            Instead of relying on a single model, the algorithm gradually improves predictions by
+            learning from residual errors in a step-by-step manner.
+        </p>
+
+    </div>
+
+</div>
+
+
+    <h2>Predict Housing Price</h2>
+
+
+    <form id="form">
+
+        {% csrf_token %}
+
+        <input type="number" name="MedInc" id="MedInc" placeholder="Median Income">
+        <input type="number" name="HouseAge" id="HouseAge" placeholder="House Age">
+        <input type="number" name="AveRooms" id="AveRooms" placeholder="Average Rooms">
+        <input type="number" name="AveBedrms" id="AveBedrms" placeholder="Average Bedrooms">
+        <input type="number" name="Population" id="Population" placeholder="Population">
+        <input type="number" name="AveOccup" id="AveOccup" placeholder="Average Occupancy">
+        <input type="number" name="Latitude" id="Latitude" placeholder="Latitude">
+        <input type="number" name="Longitude" id="Longitude" placeholder="Longitude">
+
+    </form>
+
+    <div class="button-wrapper">
+        <button type="button" onclick="sendDatagrad()">
+            Predict Price
+        </button>
+    </div>
+
+    <h2 id="result"></h2>
+
+</div>
+
 <script>
-    function sendDatagrad()
- {
 
-       const fields = ['MedInc',
-                       'HouseAge',
-                       'AveRooms',
-                       'AveBedrms',
-                       'Population',
-                       'AveOccup',
-                       'Latitude',
-                       'Longitude'
-                       ];
-       const formData = new FormData();
+function sendDatagrad()
+{
+    const fields = [
+        'MedInc',
+        'HouseAge',
+        'AveRooms',
+        'AveBedrms',
+        'Population',
+        'AveOccup',
+        'Latitude',
+        'Longitude'
+    ];
 
-       fields.forEach((field) => {
-       formData.append(field, document.getElementById(field).value);   })
+    const formData = new FormData();
 
-       const csrfToken = document.querySelector('input[name=csrfmiddlewaretoken]').value;
+    fields.forEach(field => {
+        formData.append(
+            field,
+            document.getElementById(field).value
+        );
+    });
 
-       fetch("{% url 'predict_gradient' %}" ,{
-       method: 'POST',
-       headers: {
-       'X-CSRFToken': csrfToken},
-       body: formData,
-       credentials: 'same-origin'
-       })
-       .then((response) => response.json())
-       .then((data) => {
-                  const price_gradient = (data.result * 100000).toFixed(2);
-                  document.getElementById('result').innerHTML = "Estimated Price $ " +price_gradient;
-                  })
-                  .catch((error) => console.log("Error",error));
+    const csrfToken =
+        document.querySelector(
+            'input[name=csrfmiddlewaretoken]'
+        ).value;
 
+    fetch("{% url 'predict_gradient' %}", {
 
+        method: "POST",
+
+        headers: {
+            "X-CSRFToken": csrfToken
+        },
+
+        body: formData,
+
+        credentials: 'same-origin'
+
+    })
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        const price_gradient =
+            (data.result * 100000).toFixed(2);
+
+        document.getElementById('result').innerText =
+            "Estimated Price: $" + price_gradient;
+
+    })
+
+    .catch(error =>
+        console.log("Error", error)
+    );
 }
+
 </script>
 
 </body>
