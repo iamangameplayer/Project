@@ -1,63 +1,185 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Ridge Regression</title>
+
+    <link rel="stylesheet" href="{% static 'ridge/css/ridge_regression.css' %}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-<h1>Predicting California House Prices using Ridge Regression</h1>
-<form id="form">
-    {% csrf_token %}
-    <input type="number" name="MedInc" id="MedInc" placeholder="Enter Median income in block group">
-    <input type="number" name="HouseAge" id="HouseAge" placeholder="Enter House age in block group">
-    <input type="number" name="AveRooms" id="AveRooms" placeholder="Enter average rooms per household">
-    <input type="number" name="AveBedrms" id="AveBedrms" placeholder="Enter average bedrooms per household">
-    <input type="number" name="Population" id="Population" placeholder="Enter population of  block group">
-    <input type="number" name="AveOccup" id="AveOccup" placeholder="Enter average number of household members">
-    <input type="number" name="Latitude" id="Latitude" placeholder="Enter latitude of  block group">
-    <input type="number" name="Longitude" id="Longitude" placeholder="Enter longitude of  block group">
-</form>
+<div class="container">
 
-<button type="button" onclick="sendData_ridge()">Predict</button>
-<h3 id='result'></h3>
+    <div class="model-info">
+
+        <div class="model-header">
+
+            <p class="tag">Regularized Regression Model</p>
+
+            <h1>California Housing Price Predictor</h1>
+
+            <p class="description">
+                Ridge Regression improves standard Linear Regression by applying
+                L2 regularization, reducing overfitting and stabilizing predictions.
+                The model penalizes excessively large coefficients while preserving
+                linear relationships between features and housing prices.
+            </p>
+
+        </div>
+
+        <div class="regression-visual">
+
+            <img
+                src="{% static 'ridge/images/ridge_regression.jpg' %}"
+                alt="Ridge Regression Visualization"
+            >
+
+            <div class="visual-text">
+
+                <h3>How Ridge Regression Works</h3>
+
+                <p>
+                    Ridge Regression extends Linear Regression by introducing a penalty
+                    term that shrinks large coefficients. This regularization improves
+                    model generalization and reduces sensitivity to noisy or correlated
+                    features while maintaining efficient prediction performance.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="metrics-grid">
+
+            <div class="metric-card">
+                <p class="metric-label">RMSE</p>
+                <h3>0.74</h3>
+                <span>Root Mean Squared Error</span>
+            </div>
+
+            <div class="metric-card">
+                <p class="metric-label">MSE</p>
+                <h3>0.54 </h3>
+                <span>Mean Squared Error</span>
+            </div>
+
+            <div class="metric-card">
+                <p class="metric-label">MAE</p>
+                <h3>0.54</h3>
+                <span>Mean Absolute Error</span>
+            </div>
+
+            <div class="metric-card">
+                <p class="metric-label">R² Score</p>
+                <h3>0.59</h3>
+                <span>Model Accuracy Indicator</span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <h2>Ridge Regression Prediction</h2>
+
+    <form id="form">
+
+        {% csrf_token %}
+
+        <input type="number" step="any" name="MedInc" id="MedInc" placeholder="Median Income">
+
+        <input type="number" step="any" name="HouseAge" id="HouseAge" placeholder="House Age">
+
+        <input type="number" step="any" name="AveRooms" id="AveRooms" placeholder="Average Rooms">
+
+        <input type="number" step="any" name="AveBedrms" id="AveBedrms" placeholder="Average Bedrooms">
+
+        <input type="number" step="any" name="Population" id="Population" placeholder="Population">
+
+        <input type="number" step="any" name="AveOccup" id="AveOccup" placeholder="Average Occupancy">
+
+        <input type="number" step="any" name="Latitude" id="Latitude" placeholder="Latitude">
+
+        <input type="number" step="any" name="Longitude" id="Longitude" placeholder="Longitude">
+
+    </form>
+
+    <div class="button-wrapper">
+        <button type="button" onclick="sendData_ridge()">
+            Predict Price
+        </button>
+    </div>
+
+    <h3 id="result"></h3>
+
+</div>
 
 <script>
-    function sendData_ridge()
-    {
-                    const fields = [
-                                        'MedInc',
-                                        'HouseAge',
-                                        'AveRooms',
-                                        'AveBedrms',
-                                        'Population',
-                                        'AveOccup',
-                                        'Latitude',
-                                         'Longitude'
-                    ];
+
+function sendData_ridge()
+{
+    const fields = [
+        'MedInc',
+        'HouseAge',
+        'AveRooms',
+        'AveBedrms',
+        'Population',
+        'AveOccup',
+        'Latitude',
+        'Longitude'
+    ];
 
     const formData = new FormData();
 
     fields.forEach(field => {
-    formData.append(field, document.getElementById(field).value);
-})
-    const csrfToken = document.querySelector('input[name=csrfmiddlewaretoken]').value;
+        formData.append(
+            field,
+            document.getElementById(field).value
+        );
+    });
 
-    fetch("{% url 'predict_ridge' %}" ,{
-                                        "method": "POST",
-                                        "headers": {
-                                        "X-CSRFToken": csrfToken
-                                        },
-    body: formData,
-    credentials: 'same-origin'
+    const csrfToken =
+        document.querySelector(
+            'input[name=csrfmiddlewaretoken]'
+        ).value;
+
+    fetch("{% url 'predict_ridge' %}", {
+
+        method: "POST",
+
+        headers: {
+            "X-CSRFToken": csrfToken
+        },
+
+        body: formData,
+
+        credentials: 'same-origin'
+
     })
+
     .then(response => response.json())
+
     .then(data => {
-      const price_ridge = (data.result * 100000).toFixed(2);
-      document.getElementById('result').innerText = "Estimated Price : $" + price_ridge;
-      })
-    .catch(error => console.log("Error",error));
+
+        const price_ridge =
+            (data.result * 100000).toFixed(2);
+
+        document.getElementById('result').innerText =
+            "Estimated Price: $" + price_ridge;
+
+    })
+
+    .catch(error =>
+        console.log("Error", error)
+    );
 }
+
 </script>
 
 </body>
