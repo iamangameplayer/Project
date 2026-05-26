@@ -28,5 +28,11 @@ def main_page(request):
             "icon":"🚀",
             "description":"A powerful boosting algorithm that builds models sequentially to minimize prediction errors and improve performance",
         },
+        {
+            "name": "KNN Regression",
+            "url":"/predict_knn/",
+            "icon":'📍',
+            "description":"A simple model that predicts values using the k nearest neighbours of the new values ",
+        }
     ]
     return render(request, "main_page.html", {"models": models})
