@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'linear',
     'gradient.apps.GradientConfig',
     'regression.apps.RegressionConfig',
+    'knnreg',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

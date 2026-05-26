@@ -26,4 +26,5 @@ urlpatterns = [
     path('predict_linear/', include('linear.urls')),
     path('predict_ridge/', include('ridge.urls')),
     path('predict_gradient/', include('gradient.urls')),
+    path('predict_knn/', include('knnreg.urls')),
 ]

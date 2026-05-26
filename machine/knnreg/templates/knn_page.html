@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ridge Regression</title>
+
+    <link rel="stylesheet" href="{% static 'knnreg/css/knn_page.css' %}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="model-info">
+
+        <div class="model-header">
+
+            <p class="tag">Regularized Regression Model</p>
+
+            <h1>California Housing Price Predictor</h1>
+
+            <p class="description">
+               KNN Regression predicts continuous values by analyzing the K nearest data points in the dataset and averaging their target values.
+                Unlike Linear Regression, it does not try to learn a fixed mathematical equation.
+                Instead, the model stores the training data and makes predictions based on similarity between data points.
+                Because of this, KNN Regression can capture complex and non-linear relationships between features and target values
+            </p>
+
+        </div>
+
+        <div class="regression-visual">
+
+            <img
+                src="{% static 'knnreg/images/knn_reg.jpg' %}"
+                alt="Ridge Regression Visualization"
+            >
+
+            <div class="visual-text">
+
+                <h3>How KNN Regression Works</h3>
+
+                <p>
+                    The algorithm works by first selecting a value for K, which represents the number of nearest neighbors considered for prediction.
+                    When a new data point is given, the model calculates the distance between the new point and all existing training points, usually using Euclidean distance.
+                    It then identifies the K closest neighbors and computes the average of their target values.
+                    This average becomes the predicted output
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="metrics-grid">
+
+            <div class="metric-card">
+                <p class="metric-label">RMSE</p>
+                <h3>0.5868</h3>
+                <span>Root Mean Squared Error</span>
+            </div>
+
+            <div class="metric-card">
+                <p class="metric-label">MSE</p>
+                <h3>0.344435</h3>
+                <span>Mean Squared Error</span>
+            </div>
+
+            <div class="metric-card">
+                <p class="metric-label">MAE</p>
+                <h3>0.39924</h3>
+                <span>Mean Absolute Error</span>
+            </div>
+
+            <div class="metric-card">
+                <p class="metric-label">R² Score</p>
+                <h3>0.7359</h3>
+                <span>Model Accuracy Indicator</span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <h2>KNN Regression Prediction</h2>
+
+    <form id="form">
+
+        {% csrf_token %}
+
+        <input type="number" step="any" name="MedInc" id="MedInc" placeholder="Median Income">
+
+        <input type="number" step="any" name="HouseAge" id="HouseAge" placeholder="House Age">
+
+        <input type="number" step="any" name="AveRooms" id="AveRooms" placeholder="Average Rooms">
+
+        <input type="number" step="any" name="AveBedrms" id="AveBedrms" placeholder="Average Bedrooms">
+
+        <input type="number" step="any" name="Population" id="Population" placeholder="Population">
+
+        <input type="number" step="any" name="AveOccup" id="AveOccup" placeholder="Average Occupancy">
+
+        <input type="number" step="any" name="Latitude" id="Latitude" placeholder="Latitude">
+
+        <input type="number" step="any" name="Longitude" id="Longitude" placeholder="Longitude">
+
+    </form>
+
+    <div class="button-wrapper">
+        <button type="button" onclick="sendData_knn()">
+            Predict Price
+        </button>
+    </div>
+
+    <h3 id="result"></h3>
+
+</div>
+
+<script>
+
+function sendData_knn()
+{
+    const fields = [
+        'MedInc',
+        'HouseAge',
+        'AveRooms',
+        'AveBedrms',
+        'Population',
+        'AveOccup',
+        'Latitude',
+        'Longitude'
+    ];
+
+    const formData = new FormData();
+
+    fields.forEach(field => {
+        formData.append(
+            field,
+            document.getElementById(field).value
+        );
+    });
+
+    const csrfToken =
+        document.querySelector(
+            'input[name=csrfmiddlewaretoken]'
+        ).value;
+
+    fetch("{% url 'predict_knn' %}", {
+
+        method: "POST",
+
+        headers: {
+            "X-CSRFToken": csrfToken
+        },
+
+        body: formData,
+
+        credentials: 'same-origin'
+
+    })
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        const price_ridge =
+            (data.result * 100000).toFixed(2);
+
+        document.getElementById('result').innerText =
+            "Estimated Price: $" + price_ridge;
+
+    })
+
+    .catch(error =>
+        console.log("Error", error)
+    );
+}
+
+</script>
+
+</body>
+</html>
