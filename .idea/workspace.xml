@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9cef7920-c3fc-4d1f-8a2e-34f90e55fb83" name="Changes" comment="change model number in main page from 4 to 5">
+      <change afterPath="$PROJECT_DIR$/machine/xgbst/static/xgbst/css/xgbst.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/machine/xgbst/static/xgbst/images/xgbst.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/machine/xgbst/templates/xgboost_page.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/machine/xgbst/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machine/machine/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/machine/machine/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machine/machine/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/machine/machine/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machine/mainpage/templates/main_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/machine/mainpage/templates/main_page.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dockerfile" />
+        <option value="HTML File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;iamangameplayer&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/iamangameplayer/Project.git&quot;,
+    &quot;accountId&quot;: &quot;15b108de-ce0c-4952-a8c2-bad6a0da6b59&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="3DAOZSGwTDlAwIDZnWxWBdu7yx3" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.urls.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/nagas/PyCharmMiscProject/machine/xgbst/static/xgbst/images",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\nagas\PyCharmMiscProject\machine\xgbst\static\xgbst\images" />
+      <recent name="C:\Users\nagas\PyCharmMiscProject\machine\knnreg\static\knnreg\images" />
+      <recent name="C:\Users\nagas\PyCharmMiscProject\machine\regression\static\regression\images" />
+      <recent name="C:\Users\nagas\PyCharmMiscProject\machine\gradient\static\gradient\images" />
+      <recent name="C:\Users\nagas\PyCharmMiscProject\machine\ridge\static\ridge\images" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\nagas\PyCharmMiscProject\machine\xgbst\static\xgbst" />
+      <recent name="C:\Users\nagas\PyCharmMiscProject\machine\ridge\static\ridge" />
+      <recent name="C:\Users\nagas\PyCharmMiscProject\machine\ridge\static" />
+      <recent name="C:\Users\nagas\PyCharmMiscProject\machine\ridge" />
+      <recent name="C:\Users\nagas\PyCharmMiscProject\machine\ridge\ridge\static" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="urls" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="PyCharmMiscProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.11" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/machine/ridge" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/machine/ridge/urls.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-4e2b1448bda8-9a97661f3031-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.27397.106" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9cef7920-c3fc-4d1f-8a2e-34f90e55fb83" name="Changes" comment="" />
+      <created>1777721465120</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1777721465120</updated>
+    </task>
+    <task id="LOCAL-00001" summary="added styling">
+      <option name="closed" value="true" />
+      <created>1777726980000</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1777726980001</updated>
+    </task>
+    <task id="LOCAL-00002" summary="add new app linear">
+      <option name="closed" value="true" />
+      <created>1777736868165</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1777736868165</updated>
+    </task>
+    <task id="LOCAL-00003" summary="change view adn remove errors always remember to check how you saved your model">
+      <option name="closed" value="true" />
+      <created>1777911006500</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1777911006500</updated>
+    </task>
+    <task id="LOCAL-00004" summary="change url routing , view in regression app got output">
+      <option name="closed" value="true" />
+      <created>1777912822344</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1777912822344</updated>
+    </task>
+    <task id="LOCAL-00005" summary="add new app ridge for ridge regression">
+      <option name="closed" value="true" />
+      <created>1778252968448</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1778252968448</updated>
+    </task>
+    <task id="LOCAL-00006" summary="add new app gradient for gradient boosting regression">
+      <option name="closed" value="true" />
+      <created>1778847941129</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1778847941129</updated>
+    </task>
+    <task id="LOCAL-00007" summary="add url path for gradient app">
+      <option name="closed" value="true" />
+      <created>1778848049403</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1778848049403</updated>
+    </task>
+    <task id="LOCAL-00008" summary="add main page and connect all models">
+      <option name="closed" value="true" />
+      <created>1778851396843</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1778851396843</updated>
+    </task>
+    <task id="LOCAL-00009" summary="add main page files">
+      <option name="closed" value="true" />
+      <created>1778851451294</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1778851451294</updated>
+    </task>
+    <task id="LOCAL-00010" summary="add styling to the main page to make it look good">
+      <option name="closed" value="true" />
+      <created>1779544931824</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1779544931824</updated>
+    </task>
+    <task id="LOCAL-00011" summary="add styling to linear regression page , also add image">
+      <option name="closed" value="true" />
+      <created>1779546751401</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1779546751401</updated>
+    </task>
+    <task id="LOCAL-00012" summary="add styling to ridge page">
+      <option name="closed" value="true" />
+      <created>1779548214297</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1779548214297</updated>
+    </task>
+    <task id="LOCAL-00013" summary="add styling to gradient page">
+      <option name="closed" value="true" />
+      <created>1779549396077</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1779549396077</updated>
+    </task>
+    <task id="LOCAL-00014" summary="add styling to random forest model page">
+      <option name="closed" value="true" />
+      <created>1779549828215</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1779549828215</updated>
+    </task>
+    <task id="LOCAL-00015" summary="add knn_reg app and page">
+      <option name="closed" value="true" />
+      <created>1779806980007</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1779806980007</updated>
+    </task>
+    <task id="LOCAL-00016" summary="connect knn_page to main page">
+      <option name="closed" value="true" />
+      <created>1779807713448</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1779807713448</updated>
+    </task>
+    <task id="LOCAL-00017" summary="change model number in main page from 4 to 5">
+      <option name="closed" value="true" />
+      <created>1779807820231</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1779807820231</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added styling" />
+    <MESSAGE value="add new app linear" />
+    <MESSAGE value="change view adn remove errors always remember to check how you saved your model" />
+    <MESSAGE value="change url routing , view in regression app got output" />
+    <MESSAGE value="add new app ridge for ridge regression" />
+    <MESSAGE value="add new app gradient for gradient boosting regression" />
+    <MESSAGE value="add url path for gradient app" />
+    <MESSAGE value="add main page and connect all models" />
+    <MESSAGE value="add main page files" />
+    <MESSAGE value="add styling to the main page to make it look good" />
+    <MESSAGE value="add styling to linear regression page , also add image" />
+    <MESSAGE value="add styling to ridge page" />
+    <MESSAGE value="add styling to gradient page" />
+    <MESSAGE value="add styling to random forest model page" />
+    <MESSAGE value="add knn_reg app and page" />
+    <MESSAGE value="connect knn_page to main page" />
+    <MESSAGE value="change model number in main page from 4 to 5" />
+    <option name="LAST_COMMIT_MESSAGE" value="change model number in main page from 4 to 5" />
+  </component>
+</project>

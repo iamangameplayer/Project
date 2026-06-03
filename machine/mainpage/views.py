@@ -33,6 +33,12 @@ def main_page(request):
             "url":"/predict_knn/",
             "icon":'📍',
             "description":"A simple model that predicts values using the k nearest neighbours of the new values ",
+        },
+        {
+            "name": "XGBoost Regression",
+            "url": "/predict_xgbst/",
+            "icon": "⚡",
+            "description": "A powerful gradient boosting model that builds multiple decision trees sequentially, with each tree correcting the errors of the previous ones to achieve highly accurate predictions."
         }
     ]
     return render(request, "main_page.html", {"models": models})

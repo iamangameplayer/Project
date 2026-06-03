@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>XGBoost  Regression</title>
+
+    <link rel="stylesheet" href="{% static 'xgbst/css/xgbst.css' %}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="model-info">
+
+        <div class="model-header">
+
+            <p class="tag">XGBoost Regressor Model</p>
+
+            <h1>California Housing Price Predictor</h1>
+
+            <p class="description">
+               XGBoost Regression is an advanced machine learning algorithm that predicts continuous values using an ensemble of decision trees.
+                It works by iteratively building trees that correct the mistakes of previous trees, leading to highly accurate predictions.
+                Unlike traditional regression techniques, XGBoost can model complex and non-linear patterns in data.
+                It also includes built-in regularization, feature importance analysis, and optimization techniques that improve performance and
+                help prevent overfitting, making it one of the most powerful algorithms for regression tasks.
+            </p>
+
+        </div>
+
+        <div class="regression-visual">
+
+            <img
+                src="{% static 'xgbst/images/xgbst.jpg' %}"
+                alt="XGBoost Regressor Visualization"
+            >
+
+            <div class="visual-text">
+
+                <h3>How XGBoost Regressor Works</h3>
+
+                <p>
+                    The XGBoost algorithm works by constructing multiple decision trees in a sequential manner.
+                    Each tree is trained to minimize the errors made by the previous trees, gradually improving the model's predictive performance.
+                    During training, the algorithm calculates the difference between predicted and actual values, known as residual errors.
+                    New trees are then built to learn these errors and adjust the predictions accordingly.
+                    By combining the outputs of all trees using gradient boosting, XGBoost produces accurate predictions while handling complex patterns,
+                    feature interactions, and non-linear relationships within the dataset.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="metrics-grid">
+
+            <div class="metric-card">
+                <p class="metric-label">RMSE</p>
+                <h3>0.450547742</h3>
+                <span>Root Mean Squared Error</span>
+            </div>
+
+            <div class="metric-card">
+                <p class="metric-label">MSE</p>
+                <h3>0.2032636868</h3>
+                <span>Mean Squared Error</span>
+            </div>
+
+            <div class="metric-card">
+                <p class="metric-label">MAE</p>
+                <h3>0.2954303429</h3>
+                <span>Mean Absolute Error</span>
+            </div>
+
+            <div class="metric-card">
+                <p class="metric-label">R² Score</p>
+                <h3>0.84513716</h3>
+                <span>Model Accuracy Indicator</span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <h2>XGBoost Regressor Prediction</h2>
+
+    <form id="form">
+
+        {% csrf_token %}
+
+        <input type="number" step="any" name="MedInc" id="MedInc" placeholder="Median Income">
+
+        <input type="number" step="any" name="HouseAge" id="HouseAge" placeholder="House Age">
+
+        <input type="number" step="any" name="AveRooms" id="AveRooms" placeholder="Average Rooms">
+
+        <input type="number" step="any" name="AveBedrms" id="AveBedrms" placeholder="Average Bedrooms">
+
+        <input type="number" step="any" name="Population" id="Population" placeholder="Population">
+
+        <input type="number" step="any" name="AveOccup" id="AveOccup" placeholder="Average Occupancy">
+
+        <input type="number" step="any" name="Latitude" id="Latitude" placeholder="Latitude">
+
+        <input type="number" step="any" name="Longitude" id="Longitude" placeholder="Longitude">
+
+    </form>
+
+    <div class="button-wrapper">
+        <button type="button" onclick="sendData_xgbst()">
+            Predict Price
+        </button>
+    </div>
+
+    <h3 id="result"></h3>
+
+</div>
+
+<script>
+
+function sendData_xgbst()
+{
+    const fields = [
+        'MedInc',
+        'HouseAge',
+        'AveRooms',
+        'AveBedrms',
+        'Population',
+        'AveOccup',
+        'Latitude',
+        'Longitude'
+    ];
+
+    const formData = new FormData();
+
+    fields.forEach(field => {
+        formData.append(
+            field,
+            document.getElementById(field).value
+        );
+    });
+
+    const csrfToken =
+        document.querySelector(
+            'input[name=csrfmiddlewaretoken]'
+        ).value;
+
+    fetch("{% url 'predict_xgbst' %}", {
+
+        method: "POST",
+
+        headers: {
+            "X-CSRFToken": csrfToken
+        },
+
+        body: formData,
+
+        credentials: 'same-origin'
+
+    })
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        const price_ridge =
+            (data.result * 100000).toFixed(2);
+
+        document.getElementById('result').innerText =
+            "Estimated Price: $" + price_ridge;
+
+    })
+
+    .catch(error =>
+        console.log("Error", error)
+    );
+}
+
+</script>
+
+</body>
+</html>

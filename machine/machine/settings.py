@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'mainpage',
     'ridge.apps.RidgeConfig',
     'linear',
+    'xgbst',
     'gradient.apps.GradientConfig',
     'regression.apps.RegressionConfig',
     'knnreg',
