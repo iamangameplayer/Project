@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'mainpage',
+    'metrics',
     'ridge.apps.RidgeConfig',
     'linear',
     'xgbst',

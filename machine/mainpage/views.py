@@ -1,6 +1,9 @@
 from django.shortcuts import render
 
 # Create your views here.
+def metrics(request):
+    return render(request, "metrics_page.html")
+
 def main_page(request):
     models = [
         {

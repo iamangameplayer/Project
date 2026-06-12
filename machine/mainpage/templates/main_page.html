@@ -26,7 +26,7 @@
 
         <div class="nav-links">
             <a href="#model-section">Models</a>
-            <a href="#">Metrics</a>
+            <a href="{% url 'metrics' %}">Metrics</a>
             <a href="#">About</a>
         </div>
     </nav>
@@ -53,9 +53,9 @@
                 Explore Models
             </a>
 
-            <button class="hero-btn secondary-btn">
+            <a href="{% url 'model_comparison' %}" class="hero-btn secondary-btn">
                 View Metrics
-            </button>
+            </a>
         </div>
 
     </section>

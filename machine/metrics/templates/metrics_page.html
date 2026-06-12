@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Regression Metrics</title>
+
+    <link rel="stylesheet" href="{% static 'metrics/css/metrics_page.css' %}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="model-header">
+
+        <p class="tag">Model Evaluation</p>
+
+        <h1>Regression Metrics</h1>
+
+        <p class="description">
+            Regression metrics help evaluate how well a machine learning model
+            predicts continuous numerical values. Each metric measures prediction
+            quality from a different perspective, helping us understand both
+            accuracy and error behavior.
+        </p>
+
+    </div>
+
+    <div class="model-visual">
+
+        <img src="{% static 'metrics/images/regression_metrics.jpg' %}"
+             alt="Regression Metrics">
+
+        <div class="visual-text">
+
+            <h3>Why Metrics Matter</h3>
+
+            <p>
+                After training a regression model, we need a way to measure
+                its performance. Metrics compare predicted values with actual
+                values and quantify the model's accuracy.
+                <br><br>
+                Some metrics focus on average error, some penalize large
+                mistakes more heavily, and others indicate how much variance
+                in the target variable is explained by the model.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="metrics-grid">
+
+        <div class="metric-card">
+            <h3>R² Score</h3>
+            <p>
+                Measures how much variance in the target variable is explained
+                by the model.
+            </p>
+
+            <div class="formula">
+                R² = 1 - (SS<sub>res</sub> / SS<sub>tot</sub>)
+            </div>
+
+            <p class="note">
+                Higher is better. Maximum value is 1.
+            </p>
+        </div>
+
+        <div class="metric-card">
+            <h3>MAE</h3>
+
+            <p>
+                Mean Absolute Error calculates the average absolute difference
+                between actual and predicted values.
+            </p>
+
+            <div class="formula">
+                MAE = (1/n) Σ |y - ŷ|
+            </div>
+
+            <p class="note">
+                Lower values indicate better predictions.
+            </p>
+        </div>
+
+        <div class="metric-card">
+            <h3>MSE</h3>
+
+            <p>
+                Mean Squared Error squares prediction errors before averaging,
+                making large errors more significant.
+            </p>
+
+            <div class="formula">
+                MSE = (1/n) Σ (y - ŷ)²
+            </div>
+
+            <p class="note">
+                Strongly penalizes large prediction mistakes.
+            </p>
+        </div>
+
+        <div class="metric-card">
+            <h3>RMSE</h3>
+
+            <p>
+                Root Mean Squared Error is the square root of MSE and has the
+                same unit as the target variable.
+            </p>
+
+            <div class="formula">
+                RMSE = √MSE
+            </div>
+
+            <p class="note">
+                Easier to interpret than MSE.
+            </p>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

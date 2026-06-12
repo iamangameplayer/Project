@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Comparison</title>
+
+    <link rel="stylesheet"
+          href="{% static 'metrics/css/model_comparison.css' %}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="model-header">
+
+        <p class="tag">Performance Analysis</p>
+
+        <h1>Regression Model Comparison</h1>
+
+        <p class="description">
+            The following table compares all trained regression models
+            using standard evaluation metrics. Lower MAE, MSE and RMSE
+            indicate better predictions, while higher R² values indicate
+            stronger explanatory power.
+        </p>
+
+    </div>
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Model</th>
+                    <th>R² Score</th>
+                    <th>MAE</th>
+                    <th>MSE</th>
+                    <th>RMSE</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for model in models %}
+
+                <tr>
+
+                    <td>{{ model.name }}</td>
+                    <td>{{ model.r2 }}</td>
+                    <td>{{ model.mae }}</td>
+                    <td>{{ model.mse }}</td>
+                    <td>{{ model.rmse }}</td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div class="summary-card">
+
+        <h2>Best Performing Model</h2>
+
+        <p>
+            Based on the highest R² score and lowest prediction errors,
+            <strong>{{ best_model }}</strong>
+            achieved the strongest overall performance.
+        </p>
+
+    </div>
+
+</div>
+
+</body>
+</html>
