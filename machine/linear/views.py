@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 import joblib
 # Create your views here.
-linear_model = joblib.load(open(r"C:\Users\nagas\PycharmProjects\Linear_Regression\linear_regression.joblib","rb"))
+linear_model = joblib.load(open(r"linear_regression.joblib","rb"))
 
 
 def home(request):
