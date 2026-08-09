@@ -3,8 +3,13 @@ import joblib
 from django.shortcuts import render
 from django.http import JsonResponse
 
-model = joblib.load(open(r"regressor_bundled.joblib",'rb'))
 
+from pathlib import Path
+import joblib
+
+MODEL_PATH = Path(__file__).resolve().parent / "regressor_bundled.joblib"
+
+model = joblib.load(MODEL_PATH)
 def home(request):
     return render(request, 'index.html')
 
