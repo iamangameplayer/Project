@@ -3,7 +3,7 @@ import joblib
 from django.shortcuts import render
 from django.http import JsonResponse
 
-model = joblib.load(open(r"C:\Users\nagas\PycharmProjects\Linear_Regression\regressor_bundled.joblib",'rb'))
+model = joblib.load(open(r"regressor_bundled.joblib",'rb'))
 
 def home(request):
     return render(request, 'index.html')
