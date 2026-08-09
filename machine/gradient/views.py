@@ -3,7 +3,7 @@ import joblib
 from django.shortcuts import render
 
 
-model_gradient = joblib.load(r"C:\Users\nagas\PycharmProjects\Linear_Regression\gradient_boosting_regressor.joblib",)
+model_gradient = joblib.load(r"gradient_boosting_regressor.joblib",)
 def home(request):
     return render(request, 'gradient_page.html')
 def predict_gradient(request):
