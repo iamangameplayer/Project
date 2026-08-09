@@ -4,7 +4,7 @@ from joblib import load
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
-model_xgbst=load(r"C:\Users\nagas\PycharmProjects\Linear_Regression\xgboost_housing.joblib")
+model_xgbst=load(r"xgboost_housing.joblib")
 
 def home(request):
     return render(request, "xgboost_page.html")
