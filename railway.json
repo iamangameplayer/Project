@@ -1,8 +1,7 @@
 {
   "$schema": "https://railway.com/railway.schema.json",
   "build": {
-    "builder": "RAILPACK",
-    "buildCommand": "cd machine && pip install -r requirements.txt && python download_model.py && python manage.py collectstatic --noinput && python manage.py migrate"
+    "builder": "RAILPACK"
   },
   "deploy": {
     "startCommand": "cd machine && gunicorn machine.wsgi:application --bind 0.0.0.0:$PORT --workers 1 --timeout 120",
