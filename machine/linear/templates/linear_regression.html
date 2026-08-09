@@ -25,7 +25,7 @@
 
     <div class="model-header">
         <p class="tag">Machine Learning Model</p>
-        <h1>California Housing Price Predictor</h1>
+        <h1>Housing Price Predictor</h1>
 
         <p class="description">
             This model uses Linear Regression to estimate California housing prices
@@ -144,7 +144,7 @@
                 console.log("RESPONSE:", data);
 
                 document.getElementById("result").innerText =
-                    "Prediction: " + data.result;
+                    "Prediction: ₹" + data.result;
             })
             .catch(err => console.error("ERROR:", err));
         }
