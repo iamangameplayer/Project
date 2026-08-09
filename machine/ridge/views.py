@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
 
-model_ridge = joblib.load(r"C:\Users\nagas\PycharmProjects\Linear_Regression\ridge_regression.joblib",'r')
+model_ridge = joblib.load(r"ridge_regression.joblib",'r')
 
 def home(request):
     return render(request,'ridge_page.html')
