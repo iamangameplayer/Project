@@ -3,7 +3,7 @@ from joblib import load
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
-model_knn=load(r"C:\Users\nagas\PycharmProjects\Linear_Regression\knn_regression.joblib")
+model_knn=load(r"knn_regression.joblib")
 
 def home(request):
     return render(request, "knn_page.html")
